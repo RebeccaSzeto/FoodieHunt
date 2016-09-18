@@ -1,28 +1,30 @@
 const graphql = require('graphql');
+const axios = require('axios');
 
 const query = new graphql.GraphQLObjectType({
   name: "Query",
   description: "GraphQL and Zomato Server Config",
   fields: () => ({
-     zomatoRestaurants: {
+     Restaurant: {
        type: RestaurantType,
        description: "Zomato Restaurant API data with enhanced and additional data",
        args:{
-         centerLatitude: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
-         centerLongitude: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)}
+         lat: {type: new graphql.GraphQLNonNull(graphql.GraphQLFloat)},
+         lon: {type: new graphql.GraphQLNonNull(graphql.GraphQLFloat)}
        },
-       api_key: "8d3bd8079eda39982c73397ba599afde",
-       http_method: "GET",
-       method_type: "application/json"
-     },
-       resolve: (_,{centerLatitude}, {centerLongitude}) => {
-         const urlString= "https://developers.zomato.com/api/v2.1/search?&lat=\${centerLatitude}&lon=\${centerLongitude}";
-         return axios.get(url)
+      //  api_key: "8d3bd8079eda39982c73397ba599afde",
+      //  http_method: "GET",
+      //  method_type: "application/json",
+       resolve: (_,{lat, lon}) => {
+         console.log('test')
+         const urlString = `https://developers.zomato.com/api/v2.1/search?&lat=${lat}&lon=${lon}`;
+         return axios.get(urlString)
                     .then(function(response) {
                       return response.data;
                     });
-     	 }
-     })
+     	 },
+     },
+  })
 });
 
 const LocationType = new graphql.GraphQLObjectType({
@@ -32,8 +34,9 @@ const LocationType = new graphql.GraphQLObjectType({
     address:{type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
     city: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
     latitude: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
+    longitude: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
     zipcode: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
-    country_id: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)}
+    country_id: {type: graphql.GraphQLInt}
   })
 });
 
@@ -110,5 +113,5 @@ const RestaurantSearchType = new graphql.GraphQLObjectType({
 });
 
 module.exports = new graphql.GraphQLSchema({
-	query: RestaurantType
+	query:query
 });
