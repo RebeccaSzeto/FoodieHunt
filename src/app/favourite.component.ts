@@ -9,43 +9,36 @@ const AllRestaurantsQuery= gql`
   allRestaurants {
     id
     name
+    featuredImage
     userRating
-    hours
-    phoneNumbers
-    siteUrl
     priceRange
     distance
-    featuredImage
   }
 }
 `;
 
 @Component({
-  selector: 'single',
+  selector: 'favourite',
   template: `
     <div class="w-100" style="max-width: 400px">
+      <h4 style="color:white;text-align:center;padding-top:0px;">RECENT</h4>
       <div class="pa3 bg-black-05 ma3" *ngFor="let r of allRestaurants">
-        <div class="w-100" [ngStyle]="setImage(r.featuredImage)">
-        <div style="width:100%;display:inline-block;margin-top:230px;background:rgba(55,59,68,0.7)" class="w-20 col-md-4 pt3">
-          {{r.name}}&nbsp;
-          <img src="images/rating5.png" width="20%" height=""/><br />
-          <img src="images/cost5.png" width="20%" height=""/><br />
-          {{r.hours}}<br/>
-          {{r.phoneNumbers}}<br />
-          {{r.siteUrl}}<br />
-          DIRECTIONS {{r.distance}} m away
+        <div class="fl w-third col-md-4" [ngStyle]="setImage(r.featuredImage)"></div>
+        <div class="fl w-third col-md-4">
+          <h4 style="color:white;padding-top:0px;">{{r.name}}&nbsp;</h4>
+          <img src="images/rating5small.png"/><br />
+          <img src="images/cost1small.png"/><br />
         </div>
-        <div class="pt3">
-
-          </div>
-        </div>
+        <div class="col-md-4">
+        <div><a routerLink="/detail" ><img src="images/infobuttonsmall.png" /></a><br /><br /></div>
+        <div><img src="images/closebuttonsmall.png" /></div></div>
       </div>
     </div>
   `,
   host: {'style': 'width: 100%; display: flex; justify-content: center;'}
 })
 
-export class SingleComponent implements OnInit, OnDestroy {
+export class FavouriteComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;
   allRestaurants: any;
@@ -58,7 +51,9 @@ export class SingleComponent implements OnInit, OnDestroy {
   setImage(url: string) {
     let styles = {
       'background-image':  `url(${url})`,
-      'background-size': '430px 400px',
+      'background-size': '160px 130px',
+      'height': '130px',
+      'width': '130px',
     };
     return styles;
   }

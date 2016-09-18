@@ -1,11 +1,17 @@
 import { Routes } from '@angular/router';
 
-import { FeedComponent } from './feed.component'
+import { FavouriteComponent } from './favourite.component'
 import { SingleComponent } from './single.component'
+import { HomeComponent } from './home.component'
+import { NextComponent } from './next.component'
+import { DetailComponent } from './detail.component'
 import { NewPostComponent } from './new-post.component';
 
 export const routes: Routes = [
-  { path: '', component: FeedComponent },
+  { path: 'favourites', component: FavouriteComponent },
   { path: 'single', component: SingleComponent },
-  { path: 'create', component: NewPostComponent }
+  { path: '', component: HomeComponent },
+  { path: 'next', component: NextComponent },
+  { path: 'detail', component: DetailComponent },
+  { path: 'setting', component: NewPostComponent }
 ];

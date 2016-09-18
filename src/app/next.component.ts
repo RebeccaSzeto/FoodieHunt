@@ -8,44 +8,32 @@ const AllRestaurantsQuery= gql`
   query allRestaurants {
   allRestaurants {
     id
-    name
-    userRating
-    hours
-    phoneNumbers
-    siteUrl
-    priceRange
-    distance
-    featuredImage
   }
 }
 `;
 
 @Component({
-  selector: 'single',
-  template: `
-    <div class="w-100" style="max-width: 400px">
-      <div class="pa3 bg-black-05 ma3" *ngFor="let r of allRestaurants">
-        <div class="w-100" [ngStyle]="setImage(r.featuredImage)">
-        <div style="width:100%;display:inline-block;margin-top:230px;background:rgba(55,59,68,0.7)" class="w-20 col-md-4 pt3">
-          {{r.name}}&nbsp;
-          <img src="images/rating5.png" width="20%" height=""/><br />
-          <img src="images/cost5.png" width="20%" height=""/><br />
-          {{r.hours}}<br/>
-          {{r.phoneNumbers}}<br />
-          {{r.siteUrl}}<br />
-          DIRECTIONS {{r.distance}} m away
-        </div>
-        <div class="pt3">
-
-          </div>
-        </div>
+  selector: 'next',
+  template: `    <div class="w-100" style="max-width: 400px">
+  <div class="pa3 bg-black-05 ma3">
+    <div class="w-100" style="background:url('http://blogs.starbucks.com/cfs-filesystemfile.ashx/__key/CommunityServer.Components.UserFiles/00.00.09.73.60/Min-Frappuccino-2.jpg') no-repeat;background-size:400px 300px;">
+    <div style="width:100%;display:inline-block;margin-top:230px;background:rgba(55,59,68,0.7)" class="w-20 col-md-4 pt3">
+      Starbucks&nbsp;
+      <img src="images/rating4.png" width="20%" height=""/><br />
+      <img src="images/cost1.png" width="20%" height=""/><br />
+      DIRECTIONS 15 m away
+    </div>
+    <div class="pt3">
+      <a routerLink="/favourites"><img src="images/dislikebutton.png" width="40%" /></a><a routerLink=""><img style="display:inline-block;" class="pull-right" src="images/likebutton.png" width="40%" /></a>
       </div>
     </div>
+  </div>
+</div>
   `,
   host: {'style': 'width: 100%; display: flex; justify-content: center;'}
 })
 
-export class SingleComponent implements OnInit, OnDestroy {
+export class NextComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;
   allRestaurants: any;
@@ -58,7 +46,9 @@ export class SingleComponent implements OnInit, OnDestroy {
   setImage(url: string) {
     let styles = {
       'background-image':  `url(${url})`,
-      'background-size': '430px 400px',
+      'background-size': '160px 130px',
+      'height': '130px',
+      'width': '130px',
     };
     return styles;
   }

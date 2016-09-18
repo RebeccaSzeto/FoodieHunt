@@ -32,9 +32,10 @@
 }
 
 body {
-  padding-bottom: 60px;
   font-family: Lato, Arial;
   color: white;
+  top:0;
+  background:#EDAD0C;
 }
 
 .comment-box {

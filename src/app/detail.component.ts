@@ -8,40 +8,32 @@ const AllRestaurantsQuery= gql`
   query allRestaurants {
   allRestaurants {
     id
-    name
-    featuredImage
-    userRating
-    priceRange
-    distance
   }
 }
 `;
 
 @Component({
-  selector: 'feed',
-  template: `
-    <a routerLink="/create" class="fixed top-0 pa4 ttu dim black no-underline"><img src="images/settingicon.png" height="20px" width="20px" style="padding-top:10px;margin-right:350px;" /></a>
-    <div class="w-100" style="max-width: 400px">
-      <h4 style="color:white;text-align:center;padding-top:0px;">RECENT</h4>
-      <div class=" row pa3 bg-black-05 ma3" *ngFor="let r of allRestaurants">
-        <div style="display:inline-block" class="col-md-5" [ngStyle]="setImage(r.featuredImage)"></div>
-        <div style="display:inline-block" class="w-20 col-md-4 pt3">
-          <h4 style="color:white;padding-top:0px;">{{r.name}}&nbsp;</h4>
-          <img src="images/rating5.png" width="50%" height=""/><br />
-          <img src="images/cost5.png" width="50%" height=""/><br />
-
-          <span class='red f6 pointer dim' (click)="handleDelete(r.id)">Delete</span>
+  selector: 'detail',
+  template: `    <div class="w-100" style="max-width: 400px">
+      <div class="pa3 bg-black-05 ma3">
+        <div class="w-100" style="background:url('https://thesushistation.files.wordpress.com/2015/08/wpid-img_6245.jpg') no-repeat;background-size:430px 380px;">
+        <div style="width:100%;display:inline-block;margin-top:230px;background:rgba(55,59,68,0.7)" class="w-20 col-md-4 pt3">
+          Yooji&nbsp;
+          <img src="images/rating4.png" width="20%" height=""/><br />
+          <img src="images/cost1.png" width="20%" height=""/><br />
+          11:00 AM - 9:00PM<br />
+          +41 (0)45 818 08 09<br />
+          http://sora-sushi.com/<br />
+          DIRECTIONS 10 m away
         </div>
-        <div class="col-md-3">
-        <div style="padding-left:20px;"><a routerLink="/single" ><img src="images/infobutton.png" width="150px" height="150px"/></a><br /><br /></div>
-        <div style="padding-left:20px;"><img src="images/closebutton.png" width="150px" height="150px"/></div></div>
+        </div>
       </div>
     </div>
   `,
   host: {'style': 'width: 100%; display: flex; justify-content: center;'}
 })
 
-export class FeedComponent implements OnInit, OnDestroy {
+export class DetailComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;
   allRestaurants: any;

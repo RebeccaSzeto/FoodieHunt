@@ -5,8 +5,11 @@ import { RouterModule } from '@angular/router';
 import { ApolloModule } from 'angular2-apollo';
 
 import { AppComponent } from './app.component';
-import { FeedComponent } from './feed.component';
+import { FavouriteComponent } from './favourite.component';
 import { SingleComponent } from './single.component';
+import { HomeComponent } from './home.component';
+import { NextComponent } from './next.component';
+import { DetailComponent } from './detail.component';
 import { NewPostComponent } from './new-post.component';
 import { routes } from './routes';
 import { client } from './client';
@@ -14,7 +17,10 @@ import { client } from './client';
 @NgModule({
   declarations: [
     AppComponent,
-    FeedComponent,
+    FavouriteComponent,
+    NextComponent,
+    HomeComponent,
+    DetailComponent,
     SingleComponent,
     NewPostComponent,
   ],
